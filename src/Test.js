@@ -15,11 +15,16 @@ const Test = () => {
   return (
     <div>
       {" "}
-      <input type="text" placeholder="Enter name" />
-      <input type="text" placeholder="Enter name" />
-      <input type="text" placeholder="Enter name" />
-      <input type="text" placeholder="Enter name" />
-      <input type="text" placeholder="Enter name" />
+      <input
+        type="text"
+        placeholder="Enter name"
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Enter password"
+        onChange={(e) => setPassword(e.target.value)}
+      />
       <button onClick={handleSubmit}>Submit</button>
     </div>
   );

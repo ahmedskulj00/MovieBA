@@ -6,7 +6,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "../lib/Firebase/firebase_cfg";
-import { collection, addDoc } from "@firebase/firestore";
+import { collection, setDoc, doc } from "@firebase/firestore";
 import { db } from "../lib/Firebase/firebase_cfg";
 
 const userAuthContext = createContext();
@@ -22,7 +22,7 @@ export function UserAuthContextProvider({ children }) {
 
   function signUp(email, password) {
     return createUserWithEmailAndPassword(auth, email, password).then(() => {
-      addDoc(usersCollectionRef, {
+      setDoc(doc(usersCollectionRef, auth.currentUser.uid), {
         email: email,
         password: password,
         id: auth.currentUser.uid,

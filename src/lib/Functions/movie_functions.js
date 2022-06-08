@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   collection,
-  addDoc,
+  setDoc,
   deleteDoc,
   updateDoc,
   getDocs,
@@ -9,13 +9,33 @@ import {
 } from "@firebase/firestore";
 import { db } from "../Firebase/firebase_cfg";
 
-export const addMovie = (movieName, imageUrl, description, rating, genre) => {
-  const moviesCollectionRef = collection(db, "movies");
-  addDoc(moviesCollectionRef, {
+const moviesCollectionRef = collection(db, "movies");
+
+export const addMovie = (movieName, imageUrl, description, genre) => {
+  setDoc(doc(moviesCollectionRef, movieName), {
     movieName: movieName,
     imageUrl: imageUrl,
     description: description,
-    rating: 0,
     genre: genre,
+    rating: 0,
+    voters: {},
+  });
+};
+
+export const deleteMovie = (movieName) => {
+  deleteDoc(doc(moviesCollectionRef, movieName));
+};
+
+export const rateMovie = (movieName, rating, uuid) => {
+  updateDoc(doc(moviesCollectionRef, movieName), {
+    voters: {
+      [uuid]: rating,
+    },
+  });
+};
+
+export const updateMovieRating = (movieName, rating) => {
+  updateDoc(doc(moviesCollectionRef, movieName), {
+    rating: rating,
   });
 };
