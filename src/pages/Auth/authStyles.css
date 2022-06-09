@@ -1,0 +1,26 @@
+.main_auth_container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inner_auth_container {
+  width: 30rem;
+  height: 30rem;
+  border: 2px solid blue;
+  border-radius: 1rem;
+}
+
+.popcorn_icon {
+  width: 150px;
+  height: 150px;
+}
+
+.auth_title_container {
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
+}
