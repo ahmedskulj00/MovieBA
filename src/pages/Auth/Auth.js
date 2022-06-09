@@ -3,18 +3,52 @@ import Input from "../../components/Input/Input";
 import "./authStyles.css";
 import PopCornIcon from "../../assets/images/popcorn.png";
 import Button from "../../components/Button/Button";
+import { useUserAuth } from "../../context/UserAuthContext";
+import { useNavigate } from "react-router-dom";
+
 const Auth = () => {
-  const [login, setLogin] = useState(true);
-  const [signUp, setSignUp] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
+  const [isSignUp, setIsSignUp] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const { logIn, signUp } = useUserAuth();
+  const navigate = useNavigate();
 
   const changeToLogin = () => {
-    setLogin(true);
-    setSignUp(false);
+    setIsLogin(true);
+    setIsSignUp(false);
   };
 
   const changeToSignUp = () => {
-    setLogin(false);
-    setSignUp(true);
+    setIsLogin(false);
+    setIsSignUp(true);
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      await logIn(email, password);
+      navigate("/home");
+    } catch (err) {
+      setError(err.message);
+      console.log(err);
+    }
+  };
+
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      await signUp(email, password);
+      setIsSignUp(false);
+      setIsLogin(true);
+    } catch (err) {
+      setError(err.message);
+      console.log(err);
+    }
   };
 
   return (
@@ -26,11 +60,23 @@ const Auth = () => {
         </div>
 
         <div className="auth_form_container">
-          {login && (
+          {isLogin && (
             <div className="auth_login_container">
-              <Input type="text" placeholder="Email" />
-              <Input type="password" placeholder="Password" />
-              <Button content="Login" />
+              <Input
+                type="text"
+                placeholder="Email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <Input
+                type="password"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <div className="error_container">
+                <p className="error">{error}</p>
+              </div>
+              <Button content="Login" onClick={handleLogin} />
+
               <p className="auth_question">
                 Do you want to{" "}
                 <button className="button_link" onClick={changeToSignUp}>
@@ -43,11 +89,19 @@ const Auth = () => {
               </div>
             </div>
           )}
-          {signUp && (
+          {isSignUp && (
             <div className="auth_signup_container">
-              <Input type="text" placeholder="Email" />
-              <Input type="password" placeholder="Password" />
-              <Button content="SignUp" />
+              <Input
+                type="text"
+                placeholder="Email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <Input
+                type="password"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <Button content="SignUp" onClick={handleSignUp} />
               <p className="auth_question">
                 Do you want to{" "}
                 <button className="button_link" onClick={changeToLogin}>

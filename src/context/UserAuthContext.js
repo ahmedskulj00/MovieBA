@@ -24,7 +24,6 @@ export function UserAuthContextProvider({ children }) {
     return createUserWithEmailAndPassword(auth, email, password).then(() => {
       setDoc(doc(usersCollectionRef, auth.currentUser.uid), {
         email: email,
-        password: password,
         id: auth.currentUser.uid,
         role: "user",
       });
