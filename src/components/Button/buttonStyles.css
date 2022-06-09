@@ -1,0 +1,11 @@
+.main_button {
+  width: 20rem;
+  height: 3rem;
+  background-color: blue;
+  outline: none;
+  border: none;
+  font-size: 1.3rem;
+  color: white;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
