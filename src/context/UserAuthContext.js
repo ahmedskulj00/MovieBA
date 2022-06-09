@@ -6,7 +6,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "../lib/Firebase/firebase_cfg";
-import { collection, setDoc, doc } from "@firebase/firestore";
+import { collection, setDoc, doc, getDoc } from "@firebase/firestore";
 import { db } from "../lib/Firebase/firebase_cfg";
 
 const userAuthContext = createContext();
@@ -15,6 +15,7 @@ export function UserAuthContextProvider({ children }) {
   const usersCollectionRef = collection(db, "users");
 
   const [user, setUser] = useState({});
+  const [role, setRole] = useState("");
 
   function logIn(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
@@ -27,6 +28,13 @@ export function UserAuthContextProvider({ children }) {
         id: auth.currentUser.uid,
         role: "user",
       });
+    });
+  }
+
+  // get the role of the logged in user
+  function getUserRole() {
+    return getDoc(doc(usersCollectionRef, auth.currentUser.uid)).then((doc) => {
+      setRole(doc.data().role);
     });
   }
 
@@ -45,7 +53,9 @@ export function UserAuthContextProvider({ children }) {
   }, []);
 
   return (
-    <userAuthContext.Provider value={{ user, logIn, signUp, logOut }}>
+    <userAuthContext.Provider
+      value={{ user, logIn, signUp, logOut, getUserRole, role }}
+    >
       {children}
     </userAuthContext.Provider>
   );
