@@ -1,0 +1,72 @@
+.main_navbar_container {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar_logo_container h1 {
+  font-size: 2rem;
+  font-weight: 300;
+  margin-left: 1rem;
+}
+
+.navbar_user_icon {
+  width: 50px;
+  height: 50px;
+}
+
+.navbar_user_button {
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar_user_profile_container {
+  position: relative;
+}
+
+.dropdown_container {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+.navbar_user_options {
+  margin-right: 1rem;
+  display: flex;
+  width: 9rem;
+  justify-content: space-between;
+}
+
+.add_movie_button {
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.plus_icon {
+  width: 50px;
+  height: 50px;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

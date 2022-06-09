@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "./homeStyles.css";
 import { useUserAuth } from "../../context/UserAuthContext";
+import Navbar from "../../components/Navbar/Navbar";
 const Home = () => {
   const { role, getUserRole } = useUserAuth();
 
@@ -8,9 +9,11 @@ const Home = () => {
     getUserRole();
   }, [getUserRole]);
 
-  console.log(role);
-
-  return <div>{role === "user" ? "User" : "Siuu"}</div>;
+  return (
+    <div>
+      <Navbar role={role} />
+    </div>
+  );
 };
 
 export default Home;
