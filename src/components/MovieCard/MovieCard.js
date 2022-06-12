@@ -22,8 +22,8 @@ const MovieCard = ({
           <h2 className="movie_card_name">{movieName}</h2>
         </div>
         <div className="movie_card_info_container">
-          <p>{movieYear}</p>
-          <p>{movieGenre}</p>
+          <p className="movie_card_year">{movieYear}</p>
+          <p className="movie_card_genre">{movieGenre}</p>
         </div>
         <div className="movie_card_rating_container">
           <img src={Star} alt="star_icon" className="rating_icon" />
