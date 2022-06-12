@@ -33,9 +33,13 @@ export function UserAuthContextProvider({ children }) {
 
   // get the role of the logged in user
   function getUserRole() {
-    return getDoc(doc(usersCollectionRef, auth.currentUser.uid)).then((doc) => {
-      setRole(doc.data().role);
-    });
+    if (auth && auth.currentUser) {
+      return getDoc(doc(usersCollectionRef, auth.currentUser.uid)).then(
+        (doc) => {
+          setRole(doc.data().role);
+        }
+      );
+    }
   }
 
   function logOut() {
@@ -50,7 +54,7 @@ export function UserAuthContextProvider({ children }) {
     return () => {
       unsubscribe();
     };
-  }, [auth]);
+  }, []);
 
   return (
     <userAuthContext.Provider

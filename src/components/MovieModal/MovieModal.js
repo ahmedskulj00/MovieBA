@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import "./movieModalStyles.css";
 import Star from "../../assets/images/star.png";
 import Button from "../Button/Button";
-
+import { useUserAuth } from "../../context/UserAuthContext";
+import {
+  rateMovie,
+  updateMovieRating,
+} from "../../lib/Functions/movie_functions";
 const MovieModal = ({
   movieImage,
   movieName,
@@ -10,11 +14,16 @@ const MovieModal = ({
   movieRating,
   movieGenre,
   movieDescription,
+  movieVoters,
   closeModal,
 }) => {
   const possibleRatings = [1, 2, 3, 4, 5];
   const [selectedRate, setSelectedRate] = useState(null);
   const [hoveredRate, setHoveredRate] = useState(null);
+  const [rating, setRating] = useState(null);
+  const { user } = useUserAuth();
+
+  console.log(movieVoters);
 
   return (
     <div className="movie_modal_container">
@@ -58,17 +67,12 @@ const MovieModal = ({
             {possibleRatings.map((rate) => (
               <i
                 key={rate}
-                className={
-                  "fas fa-star " +
-                  (rate <= selectedRate ? "in-rate " : "") +
-                  (rate <= hoveredRate ? "in-hover" : "")
-                }
-                onClick={() => setSelectedRate(rate)}
-                onMouseEnter={() => {
-                  setHoveredRate(rate);
-                  setSelectedRate(null);
+                className={"fas fa-star "}
+                onClick={async () => {
+                  setSelectedRate(rate);
+                  rateMovie(movieName, rate, user.uid);
+                  await updateMovieRating(movieName, rate);
                 }}
-                onMouseLeave={() => setHoveredRate(null)}
               ></i>
             ))}
           </div>

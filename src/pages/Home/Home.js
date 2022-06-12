@@ -2,22 +2,17 @@ import React, { useEffect, useState } from "react";
 import "./homeStyles.css";
 import { useUserAuth } from "../../context/UserAuthContext";
 import Navbar from "../../components/Navbar/Navbar";
-import { getMovies } from "../../lib/Functions/movie_functions";
+import { moviesCollectionRef } from "../../lib/Functions/movie_functions";
 import MovieCard from "../../components/MovieCard/MovieCard";
+import { onSnapshot } from "@firebase/firestore";
 const Home = () => {
   const { role, getUserRole } = useUserAuth();
-  const [movies, setMovies] = useState([]);
+  const [moviesNew, setMoviesNew] = useState([]);
 
   useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const movies = await getMovies();
-        setMovies(movies.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    fetchMovies();
+    onSnapshot(moviesCollectionRef, (snapshot) => {
+      setMoviesNew(snapshot.docs.map((doc) => doc.data()));
+    });
   }, []);
 
   useEffect(() => {
@@ -28,7 +23,7 @@ const Home = () => {
     <div>
       <Navbar role={role} />
       <div className="home_container">
-        {movies.map((movie, index) => (
+        {moviesNew.map((movie, index) => (
           <MovieCard
             key={index}
             movieImage={movie.imageUrl}
@@ -37,6 +32,7 @@ const Home = () => {
             movieRating={movie.rating}
             movieGenre={movie.genre}
             movieDescription={movie.description}
+            movieVoters={movie.voters}
           />
         ))}
       </div>

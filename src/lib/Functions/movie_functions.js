@@ -1,15 +1,14 @@
-import { useEffect, useState } from "react";
 import {
   collection,
   setDoc,
   deleteDoc,
   updateDoc,
-  getDocs,
+  addDoc,
   doc,
 } from "@firebase/firestore";
 import { db } from "../Firebase/firebase_cfg";
 
-const moviesCollectionRef = collection(db, "movies");
+export const moviesCollectionRef = collection(db, "movies");
 
 export const addMovie = (
   movieName,
@@ -34,10 +33,9 @@ export const deleteMovie = (movieName) => {
 };
 
 export const rateMovie = (movieName, rating, uuid) => {
+  const path = "voters." + uuid;
   updateDoc(doc(moviesCollectionRef, movieName), {
-    voters: {
-      [uuid]: rating,
-    },
+    [path]: rating,
   });
 };
 
@@ -45,8 +43,4 @@ export const updateMovieRating = (movieName, rating) => {
   updateDoc(doc(moviesCollectionRef, movieName), {
     rating: rating,
   });
-};
-
-export const getMovies = () => {
-  return getDocs(moviesCollectionRef);
 };

@@ -10,6 +10,7 @@ const MovieCard = ({
   movieRating,
   movieGenre,
   movieDescription,
+  movieVoters,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -58,6 +59,7 @@ const MovieCard = ({
             movieImage={movieImage}
             movieDescription={movieDescription}
             movieYear={movieYear}
+            movieVoters={movieVoters}
             closeModal={closeModal}
           />
         </CustomModal>
