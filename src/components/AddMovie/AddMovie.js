@@ -9,9 +9,10 @@ const AddMovie = ({ closeModal }) => {
   const [imageUrl, setImageUrl] = useState("");
   const [description, setDescription] = useState("");
   const [genre, setGenre] = useState("");
+  const [releaseYear, setReleaseYear] = useState("");
 
   const handleSubmit = () => {
-    addMovie(movieName, imageUrl, description, genre);
+    addMovie(movieName, imageUrl, description, genre, releaseYear);
   };
 
   return (
@@ -47,6 +48,11 @@ const AddMovie = ({ closeModal }) => {
             type="text"
             placeholder="Genre..."
             onChange={(e) => setGenre(e.target.value)}
+          />
+          <Input
+            type="text"
+            placeholder="Year of release..."
+            onChange={(e) => setReleaseYear(e.target.value)}
           />
           <Button
             content="Submit"

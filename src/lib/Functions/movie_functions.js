@@ -11,12 +11,19 @@ import { db } from "../Firebase/firebase_cfg";
 
 const moviesCollectionRef = collection(db, "movies");
 
-export const addMovie = (movieName, imageUrl, description, genre) => {
+export const addMovie = (
+  movieName,
+  imageUrl,
+  description,
+  genre,
+  releaseYear
+) => {
   setDoc(doc(moviesCollectionRef, movieName), {
     movieName: movieName,
     imageUrl: imageUrl,
     description: description,
     genre: genre,
+    releaseYear: releaseYear,
     rating: 0,
     voters: {},
   });
@@ -38,4 +45,8 @@ export const updateMovieRating = (movieName, rating) => {
   updateDoc(doc(moviesCollectionRef, movieName), {
     rating: rating,
   });
+};
+
+export const getMovies = () => {
+  return getDocs(moviesCollectionRef);
 };
