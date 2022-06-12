@@ -36,6 +36,7 @@ const Home = () => {
             movieYear={movie.releaseYear}
             movieRating={movie.rating}
             movieGenre={movie.genre}
+            movieDescription={movie.description}
           />
         ))}
       </div>

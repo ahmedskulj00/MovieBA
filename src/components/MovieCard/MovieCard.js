@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import "./movieCardStyles.css";
 import Star from "../../assets/images/star.png";
+import MovieModal from "../MovieModal/MovieModal";
+import CustomModal from "../Modal/CustomModal";
 const MovieCard = ({
   movieImage,
   movieName,
   movieYear,
   movieRating,
   movieGenre,
+  movieDescription,
 }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
-    <div className="movie_card_container">
+    <div className="movie_card_container" onClick={openModal}>
       <div className="movie_card_inner_container">
         <div className="movie_card_image_container">
           <img
@@ -30,6 +43,16 @@ const MovieCard = ({
           <p>{movieRating}</p>
         </div>
       </div>
+      <CustomModal modalIsOpen={isModalOpen} closeModal={closeModal}>
+        <MovieModal
+          movieName={movieName}
+          movieGenre={movieGenre}
+          movieRating={movieRating}
+          movieImage={movieImage}
+          movieDescription={movieDescription}
+          movieYear={movieYear}
+        />
+      </CustomModal>
     </div>
   );
 };
