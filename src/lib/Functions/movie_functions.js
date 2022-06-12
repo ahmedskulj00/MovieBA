@@ -2,8 +2,9 @@ import {
   collection,
   setDoc,
   deleteDoc,
+  deleteField,
   updateDoc,
-  addDoc,
+  getDoc,
   doc,
 } from "@firebase/firestore";
 import { db } from "../Firebase/firebase_cfg";
@@ -32,15 +33,35 @@ export const deleteMovie = (movieName) => {
   deleteDoc(doc(moviesCollectionRef, movieName));
 };
 
+const getAverageRating = (movieName) => {
+  getDoc(doc(moviesCollectionRef, movieName)).then((document) => {
+    const voters = document.data().voters;
+    let sum = 0;
+    for (let key in voters) {
+      sum += voters[key];
+    }
+
+    let avg = sum / Object.keys(voters).length;
+
+    updateDoc(doc(moviesCollectionRef, movieName), {
+      rating: avg,
+    });
+  });
+};
+
 export const rateMovie = (movieName, rating, uuid) => {
   const path = "voters." + uuid;
   updateDoc(doc(moviesCollectionRef, movieName), {
     [path]: rating,
   });
+  getAverageRating(movieName);
 };
 
-export const updateMovieRating = (movieName, rating) => {
+export const deleteRating = (movieName, uuid) => {
+  const path = "voters." + uuid;
   updateDoc(doc(moviesCollectionRef, movieName), {
-    rating: rating,
+    [path]: deleteField(),
   });
+
+  getAverageRating(movieName);
 };

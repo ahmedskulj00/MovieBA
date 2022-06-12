@@ -1,12 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./movieModalStyles.css";
 import Star from "../../assets/images/star.png";
 import Button from "../Button/Button";
 import { useUserAuth } from "../../context/UserAuthContext";
-import {
-  rateMovie,
-  updateMovieRating,
-} from "../../lib/Functions/movie_functions";
+import { deleteRating, rateMovie } from "../../lib/Functions/movie_functions";
 const MovieModal = ({
   movieImage,
   movieName,
@@ -19,11 +16,18 @@ const MovieModal = ({
 }) => {
   const possibleRatings = [1, 2, 3, 4, 5];
   const [selectedRate, setSelectedRate] = useState(null);
-  const [hoveredRate, setHoveredRate] = useState(null);
-  const [rating, setRating] = useState(null);
+  const [currentRate, setCurrentRate] = useState(null);
   const { user } = useUserAuth();
 
-  console.log(movieVoters);
+  useEffect(() => {
+    const currentUserRating = Object.keys(movieVoters).find(
+      (key) => key === user.uid
+    );
+
+    setCurrentRate(currentUserRating);
+  }, [movieVoters, user.uid]);
+
+  console.log(selectedRate);
 
   return (
     <div className="movie_modal_container">
@@ -67,14 +71,26 @@ const MovieModal = ({
             {possibleRatings.map((rate) => (
               <i
                 key={rate}
-                className={"fas fa-star "}
-                onClick={async () => {
+                className={
+                  movieVoters[currentRate] >= rate
+                    ? "fas fa-star in-rate"
+                    : "fas fa-star"
+                }
+                onClick={() => {
                   setSelectedRate(rate);
                   rateMovie(movieName, rate, user.uid);
-                  await updateMovieRating(movieName, rate);
                 }}
               ></i>
             ))}
+            {currentRate && (
+              <button
+                onClick={() => {
+                  deleteRating(movieName, user.uid);
+                }}
+              >
+                X
+              </button>
+            )}
           </div>
         </div>
       </div>

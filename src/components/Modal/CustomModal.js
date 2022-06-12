@@ -21,6 +21,7 @@ const CustomModal = ({ children, modalIsOpen, closeModal, width, height }) => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
+        ariaHideApp={false}
       >
         {children}
       </Modal>

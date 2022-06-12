@@ -29,7 +29,7 @@ const Home = () => {
             movieImage={movie.imageUrl}
             movieName={movie.movieName}
             movieYear={movie.releaseYear}
-            movieRating={movie.rating}
+            movieRating={parseFloat(movie.rating).toFixed(1)}
             movieGenre={movie.genre}
             movieDescription={movie.description}
             movieVoters={movie.voters}
