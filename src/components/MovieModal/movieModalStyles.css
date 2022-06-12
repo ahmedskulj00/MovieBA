@@ -1,3 +1,36 @@
+.movie_modal_container {
+  width: 100%;
+  height: 100%;
+}
+
+.movie_modal_inner_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.movie_modal_image_container {
+  width: 50%;
+  height: 100%;
+}
+
+.movie_modal_image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+
+.movie_modal_info {
+  width: 50%;
+  height: 100%;
+}
+
+.movie_exit_container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
 i {
   font-size: 1.5rem;
   margin: 8px;

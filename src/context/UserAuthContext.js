@@ -50,7 +50,7 @@ export function UserAuthContextProvider({ children }) {
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [auth]);
 
   return (
     <userAuthContext.Provider

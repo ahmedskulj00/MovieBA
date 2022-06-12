@@ -17,7 +17,8 @@ const MovieCard = ({
     setIsModalOpen(true);
   };
 
-  const closeModal = () => {
+  const closeModal = (e) => {
+    e.stopPropagation();
     setIsModalOpen(false);
   };
 
@@ -43,16 +44,24 @@ const MovieCard = ({
           <p>{movieRating}</p>
         </div>
       </div>
-      <CustomModal modalIsOpen={isModalOpen} closeModal={closeModal}>
-        <MovieModal
-          movieName={movieName}
-          movieGenre={movieGenre}
-          movieRating={movieRating}
-          movieImage={movieImage}
-          movieDescription={movieDescription}
-          movieYear={movieYear}
-        />
-      </CustomModal>
+      {isModalOpen && (
+        <CustomModal
+          modalIsOpen={isModalOpen}
+          closeModal={closeModal}
+          width="60rem"
+          height="40rem"
+        >
+          <MovieModal
+            movieName={movieName}
+            movieGenre={movieGenre}
+            movieRating={movieRating}
+            movieImage={movieImage}
+            movieDescription={movieDescription}
+            movieYear={movieYear}
+            closeModal={closeModal}
+          />
+        </CustomModal>
+      )}
     </div>
   );
 };

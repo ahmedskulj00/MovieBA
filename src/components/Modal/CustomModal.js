@@ -1,11 +1,11 @@
 import React from "react";
 import Modal from "react-modal";
 
-const CustomModal = ({ children, modalIsOpen, closeModal }) => {
+const CustomModal = ({ children, modalIsOpen, closeModal, width, height }) => {
   const customStyles = {
     content: {
-      width: "40rem",
-      height: "30rem",
+      width: width,
+      height: height,
       top: "50%",
       left: "50%",
       right: "auto",

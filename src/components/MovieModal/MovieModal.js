@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./movieModalStyles.css";
 import Star from "../../assets/images/star.png";
+import Button from "../Button/Button";
 
 const MovieModal = ({
   movieImage,
@@ -9,6 +10,7 @@ const MovieModal = ({
   movieRating,
   movieGenre,
   movieDescription,
+  closeModal,
 }) => {
   const possibleRatings = [1, 2, 3, 4, 5];
   const [selectedRate, setSelectedRate] = useState(null);
@@ -16,6 +18,17 @@ const MovieModal = ({
 
   return (
     <div className="movie_modal_container">
+      <div className="movie_exit_container">
+        <div className="movie_exit_icon_container">
+          <Button
+            content="X"
+            width="2rem"
+            height="2rem"
+            fontSize="1rem"
+            onClick={closeModal}
+          ></Button>
+        </div>
+      </div>
       <div className="movie_modal_inner_container">
         <div className="movie_modal_image_container">
           <img

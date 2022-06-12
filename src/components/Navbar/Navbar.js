@@ -55,7 +55,12 @@ const Navbar = ({ role }) => {
             <button className="add_movie_button" onClick={openModal}>
               <img src={Plus} className="plus_icon" alt="plus_icon" />
             </button>
-            <CustomModal modalIsOpen={isModalOpen} closeModal={closeModal}>
+            <CustomModal
+              modalIsOpen={isModalOpen}
+              closeModal={closeModal}
+              width="40rem"
+              height="30rem"
+            >
               <AddMovie closeModal={closeModal} />
             </CustomModal>
           </div>
