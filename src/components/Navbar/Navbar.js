@@ -5,9 +5,12 @@ import Plus from "../../assets/images/plus.png";
 import UserIcon from "../../assets/images/user.png";
 import { useUserAuth } from "../../context/UserAuthContext";
 import { useNavigate } from "react-router-dom";
+import CustomModal from "../Modal/CustomModal";
+import AddMovie from "../AddMovie/AddMovie";
 
 const Navbar = ({ role }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { logOut } = useUserAuth();
   const navigate = useNavigate();
   const navRef = useRef();
@@ -33,6 +36,14 @@ const Navbar = ({ role }) => {
     };
   }, [navRef]);
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="main_navbar_container">
       <div className="navbar_logo_container">
@@ -40,9 +51,14 @@ const Navbar = ({ role }) => {
       </div>
       <div className="navbar_user_options">
         {role === "admin" && (
-          <button className="add_movie_button">
-            <img src={Plus} className="plus_icon" alt="plus_icon" />
-          </button>
+          <div>
+            <button className="add_movie_button" onClick={openModal}>
+              <img src={Plus} className="plus_icon" alt="plus_icon" />
+            </button>
+            <CustomModal modalIsOpen={isModalOpen} closeModal={closeModal}>
+              <AddMovie closeModal={closeModal} />
+            </CustomModal>
+          </div>
         )}
         <div className="navbar_user_profile_container">
           <button
