@@ -13,9 +13,10 @@ const Auth = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const { logIn, signUp } = useUserAuth();
+  const { logIn, signUp, guestLogin, user } = useUserAuth();
   const navigate = useNavigate();
 
+  console.log(user);
   const changeToLogin = () => {
     setIsLogin(true);
     setIsSignUp(false);
@@ -45,6 +46,16 @@ const Auth = () => {
       await signUp(email, password);
       setIsSignUp(false);
       setIsLogin(true);
+    } catch (err) {
+      setError(err.message);
+      console.log(err);
+    }
+  };
+
+  const handleGuestLogin = async () => {
+    try {
+      await guestLogin();
+      navigate("/home");
     } catch (err) {
       setError(err.message);
       console.log(err);
@@ -85,7 +96,9 @@ const Auth = () => {
                 ?
               </p>
               <div className="auth_guest_container">
-                <button className="button_link">Join as a Guest</button>
+                <button className="button_link" onClick={handleGuestLogin}>
+                  Join as a Guest
+                </button>
               </div>
             </div>
           )}

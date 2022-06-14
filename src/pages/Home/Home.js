@@ -6,7 +6,7 @@ import { moviesCollectionRef } from "../../lib/Functions/movie_functions";
 import MovieCard from "../../components/MovieCard/MovieCard";
 import { onSnapshot } from "@firebase/firestore";
 const Home = () => {
-  const { role, getUserRole } = useUserAuth();
+  const { role, getUserRole, user } = useUserAuth();
   const [moviesNew, setMoviesNew] = useState([]);
 
   useEffect(() => {

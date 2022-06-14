@@ -4,6 +4,9 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
+  signInAnonymously,
+  setPersistence,
+  browserSessionPersistence,
 } from "firebase/auth";
 import { auth } from "../lib/Firebase/firebase_cfg";
 import { collection, setDoc, doc, getDoc } from "@firebase/firestore";
@@ -18,7 +21,17 @@ export function UserAuthContextProvider({ children }) {
   const [role, setRole] = useState("");
 
   function logIn(email, password) {
-    return signInWithEmailAndPassword(auth, email, password);
+    setPersistence(auth, browserSessionPersistence)
+      .then(() => {
+        return signInWithEmailAndPassword(auth, email, password);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  function guestLogin() {
+    return signInAnonymously(auth);
   }
 
   function signUp(email, password) {
@@ -58,7 +71,7 @@ export function UserAuthContextProvider({ children }) {
 
   return (
     <userAuthContext.Provider
-      value={{ user, logIn, signUp, logOut, getUserRole, role }}
+      value={{ user, logIn, signUp, logOut, getUserRole, guestLogin, role }}
     >
       {children}
     </userAuthContext.Provider>

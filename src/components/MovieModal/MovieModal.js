@@ -20,12 +20,13 @@ const MovieModal = ({
   const { user } = useUserAuth();
 
   useEffect(() => {
-    const currentUserRating = Object.keys(movieVoters).find(
-      (key) => key === user.uid
-    );
-
-    setCurrentRate(currentUserRating);
-  }, [movieVoters, user.uid]);
+    if (user !== null) {
+      const currentUserRating = Object.keys(movieVoters).find(
+        (key) => key === user.uid
+      );
+      setCurrentRate(currentUserRating);
+    }
+  }, [movieVoters, user.uid, user]);
 
   console.log(selectedRate);
 
@@ -67,31 +68,33 @@ const MovieModal = ({
           <div className="movie_description_container">
             <p>{movieDescription}</p>
           </div>
-          <div className="movie_user_rate_container">
-            {possibleRatings.map((rate) => (
-              <i
-                key={rate}
-                className={
-                  movieVoters[currentRate] >= rate
-                    ? "fas fa-star in-rate"
-                    : "fas fa-star"
-                }
-                onClick={() => {
-                  setSelectedRate(rate);
-                  rateMovie(movieName, rate, user.uid);
-                }}
-              ></i>
-            ))}
-            {currentRate && (
-              <button
-                onClick={() => {
-                  deleteRating(movieName, user.uid);
-                }}
-              >
-                X
-              </button>
-            )}
-          </div>
+          {user !== null && (
+            <div className="movie_user_rate_container">
+              {possibleRatings.map((rate) => (
+                <i
+                  key={rate}
+                  className={
+                    movieVoters[currentRate] >= rate
+                      ? "fas fa-star in-rate"
+                      : "fas fa-star"
+                  }
+                  onClick={() => {
+                    setSelectedRate(rate);
+                    rateMovie(movieName, rate, user.uid);
+                  }}
+                ></i>
+              ))}
+              {currentRate && (
+                <button
+                  onClick={() => {
+                    deleteRating(movieName, user.uid);
+                  }}
+                >
+                  X
+                </button>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
