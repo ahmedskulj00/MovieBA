@@ -6,7 +6,7 @@ import {
   signOut,
   signInAnonymously,
   setPersistence,
-  browserSessionPersistence,
+  browserLocalPersistence,
 } from "firebase/auth";
 import { auth } from "../lib/Firebase/firebase_cfg";
 import { collection, setDoc, doc, getDoc } from "@firebase/firestore";
@@ -21,7 +21,7 @@ export function UserAuthContextProvider({ children }) {
   const [role, setRole] = useState("");
 
   function logIn(email, password) {
-    setPersistence(auth, browserSessionPersistence)
+    setPersistence(auth, browserLocalPersistence)
       .then(() => {
         return signInWithEmailAndPassword(auth, email, password);
       })
@@ -44,7 +44,6 @@ export function UserAuthContextProvider({ children }) {
     });
   }
 
-  // get the role of the logged in user
   function getUserRole() {
     if (auth && auth.currentUser) {
       return getDoc(doc(usersCollectionRef, auth.currentUser.uid)).then(

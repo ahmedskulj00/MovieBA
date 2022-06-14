@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import Input from "../../components/Input/Input";
 import "./authStyles.css";
-import PopCornIcon from "../../assets/images/popcorn.png";
 import Button from "../../components/Button/Button";
 import { useUserAuth } from "../../context/UserAuthContext";
 import { useNavigate } from "react-router-dom";
+import AuthImage from "../../assets/images/authimage.jpg";
+import Login from "../Login/Login";
+import Registration from "../Registration/Registration";
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -65,65 +67,35 @@ const Auth = () => {
   return (
     <div className="main_auth_container">
       <div className="inner_auth_container">
-        <div className="auth_title_container">
-          <img src={PopCornIcon} className="popcorn_icon" alt="popcorn_icon" />
-          <h1 className="auth_title">Welcome to MovieBa!</h1>
+        <div className="left_auth_container">
+          <img src={AuthImage} alt="auth" className="auth_image" />
         </div>
+        <div className="right_auth_container">
+          <div className="auth_title_container">
+            <h1 className="auth_title">Welcome to MovieBA!</h1>
+          </div>
 
-        <div className="auth_form_container">
-          {isLogin && (
-            <div className="auth_login_container">
-              <Input
-                type="text"
-                placeholder="Email"
-                onChange={(e) => setEmail(e.target.value)}
+          <div className="auth_form_container">
+            {isLogin && (
+              <Login
+                setEmail={setEmail}
+                setPassword={setPassword}
+                error={error}
+                handleGuestLogin={handleGuestLogin}
+                handleLogin={handleLogin}
+                changeToSignUp={changeToSignUp}
               />
-              <Input
-                type="password"
-                placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)}
+            )}
+            {isSignUp && (
+              <Registration
+                setEmail={setEmail}
+                setPassword={setPassword}
+                error={error}
+                handleSignUp={handleSignUp}
+                changeToLogin={changeToLogin}
               />
-              <div className="error_container">
-                <p className="error">{error}</p>
-              </div>
-              <Button content="Login" onClick={handleLogin} />
-
-              <p className="auth_question">
-                Do you want to{" "}
-                <button className="button_link" onClick={changeToSignUp}>
-                  SignUp
-                </button>{" "}
-                ?
-              </p>
-              <div className="auth_guest_container">
-                <button className="button_link" onClick={handleGuestLogin}>
-                  Join as a Guest
-                </button>
-              </div>
-            </div>
-          )}
-          {isSignUp && (
-            <div className="auth_signup_container">
-              <Input
-                type="text"
-                placeholder="Email"
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <Input
-                type="password"
-                placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <Button content="SignUp" onClick={handleSignUp} />
-              <p className="auth_question">
-                Do you want to{" "}
-                <button className="button_link" onClick={changeToLogin}>
-                  Login
-                </button>{" "}
-                ?
-              </p>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </div>
