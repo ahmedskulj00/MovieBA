@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Input from "../../components/Input/Input";
 import "./authStyles.css";
 import Button from "../../components/Button/Button";
@@ -11,6 +11,7 @@ import Registration from "../Registration/Registration";
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [isSignUp, setIsSignUp] = useState(false);
+  const [authChanged, setIsAuthChanged] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -18,26 +19,26 @@ const Auth = () => {
   const { logIn, signUp, guestLogin, user } = useUserAuth();
   const navigate = useNavigate();
 
-  console.log(user);
+  console.log(error);
   const changeToLogin = () => {
     setIsLogin(true);
+    setIsAuthChanged(true);
     setIsSignUp(false);
   };
 
   const changeToSignUp = () => {
     setIsLogin(false);
+    setIsAuthChanged(true);
     setIsSignUp(true);
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError("");
     try {
       await logIn(email, password);
-      navigate("/home");
-    } catch (err) {
-      setError(err.message);
-      console.log(err);
+      navigate("/");
+    } catch (error) {
+      setError(error.message);
     }
   };
 
@@ -63,6 +64,12 @@ const Auth = () => {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    if (email.length > 0 || password.length > 0 || authChanged) {
+      setError("");
+    }
+  }, [email, password, isLogin, authChanged]);
 
   return (
     <div className="main_auth_container">

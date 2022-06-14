@@ -68,7 +68,7 @@ const MovieModal = ({
           <div className="movie_description_container">
             <p>{movieDescription}</p>
           </div>
-          {user !== null && (
+          {user !== null && !user.isAnonymous ? (
             <div className="movie_user_rate_container">
               {possibleRatings.map((rate) => (
                 <i
@@ -93,7 +93,7 @@ const MovieModal = ({
                 ></Button>
               )}
             </div>
-          )}
+          ) : null}
         </div>
       </div>
     </div>

@@ -14,6 +14,7 @@ const MovieCard = ({
   movieDescription,
   movieVoters,
   role,
+  user,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -48,7 +49,7 @@ const MovieCard = ({
             <img src={Star} alt="star_icon" className="rating_icon" />
             <p>{movieRating === "NaN" ? "0.0" : movieRating}</p>
           </div>
-          {role === "admin" && (
+          {role === "admin" && !user.isAnonymous ? (
             <div className="movie_card_rating_container">
               <Button
                 onClick={() => {
@@ -57,7 +58,7 @@ const MovieCard = ({
                 deleteButton={true}
               ></Button>
             </div>
-          )}
+          ) : null}
         </div>
       </div>
       {isModalOpen && (

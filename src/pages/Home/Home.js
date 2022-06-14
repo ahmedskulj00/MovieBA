@@ -35,6 +35,7 @@ const Home = () => {
               movieDescription={movie.description}
               movieVoters={movie.voters}
               role={role}
+              user={user}
             />
           ))}
         </div>
