@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 import { addMovie } from "../../lib/Functions/movie_functions";
@@ -10,10 +10,34 @@ const AddMovie = ({ closeModal }) => {
   const [description, setDescription] = useState("");
   const [genre, setGenre] = useState("");
   const [releaseYear, setReleaseYear] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = () => {
-    addMovie(movieName, imageUrl, description, genre, releaseYear);
+    if (
+      movieName.length === 0 ||
+      imageUrl.length === 0 ||
+      description.length === 0 ||
+      genre.length === 0 ||
+      releaseYear.length === 0
+    ) {
+      setError("All fields are required");
+    } else {
+      addMovie(movieName, imageUrl, description, genre, releaseYear);
+      closeModal();
+    }
   };
+
+  useEffect(() => {
+    if (
+      movieName.length > 0 ||
+      imageUrl.length > 0 ||
+      description.length > 0 ||
+      genre.length > 0 ||
+      releaseYear.length > 0
+    ) {
+      setError("");
+    }
+  }, [movieName, imageUrl, description, genre, releaseYear]);
 
   return (
     <div className="add_movie_container">
@@ -41,6 +65,7 @@ const AddMovie = ({ closeModal }) => {
           />
           <Input
             type="text"
+            inputType="textarea"
             placeholder="Description..."
             onChange={(e) => setDescription(e.target.value)}
           />
@@ -54,11 +79,11 @@ const AddMovie = ({ closeModal }) => {
             placeholder="Year of release..."
             onChange={(e) => setReleaseYear(e.target.value)}
           />
+          <div className="error_container">{error}</div>
           <Button
             content="Submit"
             onClick={() => {
               handleSubmit();
-              closeModal();
             }}
           />
         </div>

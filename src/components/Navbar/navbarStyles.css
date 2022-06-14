@@ -1,8 +1,17 @@
 .main_navbar_container {
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   width: 100vw;
   display: flex;
+  justify-content: center;
+}
+
+.inner_navbar_container {
+  display: flex;
   justify-content: space-between;
+  width: 80vw;
+}
+
+.navbar_logo_container {
+  display: flex;
   align-items: center;
 }
 
@@ -10,11 +19,12 @@
   font-size: 2rem;
   font-weight: 300;
   margin-left: 1rem;
+  color: white;
 }
 
 .navbar_user_icon {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
 }
 
 .navbar_user_button {
@@ -44,10 +54,9 @@
 }
 
 .navbar_user_options {
-  margin-right: 1rem;
   display: flex;
   width: 9rem;
-  justify-content: space-between;
+  align-items: center;
 }
 
 .add_movie_button {
@@ -58,8 +67,14 @@
 }
 
 .plus_icon {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
+  margin-right: 3rem;
+}
+
+.popcorn_icon {
+  width: 30px;
+  height: 30px;
 }
 
 @keyframes fade-in {

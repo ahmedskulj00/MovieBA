@@ -13,3 +13,20 @@
   font-size: 0.9rem;
   font-weight: 300;
 }
+
+.input_textarea {
+  width: 20rem;
+  padding: 1rem;
+  outline: none;
+  font-size: 0.9rem;
+  border: none;
+  background-color: #e4e7eb;
+  border-radius: 2%;
+  margin-bottom: 1rem;
+  resize: none;
+}
+
+.input_textarea::placeholder {
+  font-size: 0.9rem;
+  font-weight: 300;
+}
