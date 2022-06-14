@@ -36,7 +36,7 @@ const Auth = () => {
     e.preventDefault();
     try {
       await logIn(email, password);
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       setError(error.message);
     }

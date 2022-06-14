@@ -50,7 +50,10 @@ export function UserAuthContextProvider({ children }) {
   }
 
   function logOut() {
-    return signOut(auth);
+    return signOut(auth).then(() => {
+      setUser({});
+      setRole("");
+    });
   }
 
   useEffect(() => {
