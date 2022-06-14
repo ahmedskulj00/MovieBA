@@ -3,6 +3,7 @@
   height: 18rem;
   cursor: pointer;
   color: white;
+  margin-bottom: 2rem;
 }
 
 .movie_card_image {
@@ -44,4 +45,10 @@
   width: 15px;
   height: 15px;
   margin-right: 1rem;
+}
+
+.movie_card_rating_delete_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

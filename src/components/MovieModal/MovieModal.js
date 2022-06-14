@@ -62,7 +62,7 @@ const MovieModal = ({
             </div>
             <div className="movie_card_rating_container">
               <img src={Star} alt="star_icon" className="rating_icon" />
-              <p>{movieRating}</p>
+              <p>{movieRating === "NaN" ? "0.0" : movieRating}</p>
             </div>
           </div>
           <div className="movie_description_container">
@@ -85,13 +85,12 @@ const MovieModal = ({
                 ></i>
               ))}
               {currentRate && (
-                <button
+                <Button
                   onClick={() => {
                     deleteRating(movieName, user.uid);
                   }}
-                >
-                  X
-                </button>
+                  deleteButton={true}
+                ></Button>
               )}
             </div>
           )}

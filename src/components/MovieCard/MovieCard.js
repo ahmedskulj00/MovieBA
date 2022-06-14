@@ -3,6 +3,8 @@ import "./movieCardStyles.css";
 import Star from "../../assets/images/star.png";
 import MovieModal from "../MovieModal/MovieModal";
 import CustomModal from "../Modal/CustomModal";
+import Button from "../Button/Button";
+import { deleteMovie } from "../../lib/Functions/movie_functions";
 const MovieCard = ({
   movieImage,
   movieName,
@@ -11,6 +13,7 @@ const MovieCard = ({
   movieGenre,
   movieDescription,
   movieVoters,
+  role,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -40,9 +43,21 @@ const MovieCard = ({
           <p className="movie_card_year">{movieYear}</p>
           <p className="movie_card_genre">{movieGenre}</p>
         </div>
-        <div className="movie_card_rating_container">
-          <img src={Star} alt="star_icon" className="rating_icon" />
-          <p>{movieRating}</p>
+        <div className="movie_card_rating_delete_container">
+          <div className="movie_card_rating_container">
+            <img src={Star} alt="star_icon" className="rating_icon" />
+            <p>{movieRating === "NaN" ? "0.0" : movieRating}</p>
+          </div>
+          {role === "admin" && (
+            <div className="movie_card_rating_container">
+              <Button
+                onClick={() => {
+                  deleteMovie(movieName);
+                }}
+                deleteButton={true}
+              ></Button>
+            </div>
+          )}
         </div>
       </div>
       {isModalOpen && (

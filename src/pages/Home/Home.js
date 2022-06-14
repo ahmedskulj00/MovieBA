@@ -34,6 +34,7 @@ const Home = () => {
               movieGenre={movie.genre}
               movieDescription={movie.description}
               movieVoters={movie.voters}
+              role={role}
             />
           ))}
         </div>
