@@ -23,18 +23,20 @@ const Home = () => {
     <div>
       <Navbar role={role} />
       <div className="home_container">
-        {moviesNew.map((movie, index) => (
-          <MovieCard
-            key={index}
-            movieImage={movie.imageUrl}
-            movieName={movie.movieName}
-            movieYear={movie.releaseYear}
-            movieRating={parseFloat(movie.rating).toFixed(1)}
-            movieGenre={movie.genre}
-            movieDescription={movie.description}
-            movieVoters={movie.voters}
-          />
-        ))}
+        <div className="home_grid_container">
+          {moviesNew.map((movie, index) => (
+            <MovieCard
+              key={index}
+              movieImage={movie.imageUrl}
+              movieName={movie.movieName}
+              movieYear={movie.releaseYear}
+              movieRating={parseFloat(movie.rating).toFixed(1)}
+              movieGenre={movie.genre}
+              movieDescription={movie.description}
+              movieVoters={movie.voters}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -1,0 +1,7 @@
+.home_grid_container {
+  margin-top: 5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  justify-items: center;
+  gap: 2rem;
+}
