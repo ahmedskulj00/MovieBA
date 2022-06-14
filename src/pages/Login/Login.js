@@ -17,13 +17,11 @@ const Login = ({
         type="text"
         placeholder="Email"
         onChange={(e) => setEmail(e.target.value)}
-        width="25rem"
       />
       <Input
         type="password"
         placeholder="Password"
         onChange={(e) => setPassword(e.target.value)}
-        width="25rem"
       />
       <div className="error_container">
         <p className="error">{error}</p>

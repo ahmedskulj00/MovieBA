@@ -5,3 +5,18 @@
   justify-items: center;
   gap: 2rem;
 }
+
+@media (max-width: 768px) {
+  .home_container {
+    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .home_grid_container {
+    justify-items: center;
+  }
+}

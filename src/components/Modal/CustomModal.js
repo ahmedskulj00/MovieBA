@@ -2,9 +2,11 @@ import React from "react";
 import Modal from "react-modal";
 
 const CustomModal = ({ children, modalIsOpen, closeModal, width, height }) => {
+  const mobile = window.innerWidth < 768;
+
   const customStyles = {
     content: {
-      width: width,
+      width: mobile ? "90%" : width,
       height: height,
       top: "50%",
       left: "50%",

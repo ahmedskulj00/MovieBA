@@ -79,3 +79,19 @@ i {
 .in-hover {
   color: rgba(255, 255, 0, 0.3);
 }
+
+@media (max-width: 768px) {
+  .movie_modal_inner_container {
+    flex-direction: column;
+  }
+  .movie_modal_image_container {
+    width: 100%;
+    height: 100%;
+  }
+  .movie_modal_info {
+    width: 100%;
+  }
+  .movie_user_rate_container {
+    margin-bottom: 1rem;
+  }
+}

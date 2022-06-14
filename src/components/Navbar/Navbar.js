@@ -52,7 +52,13 @@ const Navbar = ({ role }) => {
           <img src={Popcorn} alt="popcorn" className="popcorn_icon" />
           <h1>MovieBA</h1>
         </div>
-        <div className="navbar_user_options">
+        <div
+          className={
+            role === "admin"
+              ? "navbar_user_options navbar_user_options_admin"
+              : "navbar_user_options"
+          }
+        >
           {role === "admin" && (
             <div>
               <button className="add_movie_button" onClick={openModal}>

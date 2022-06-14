@@ -1,5 +1,5 @@
 .main_input {
-  width: 20rem;
+  width: 25rem;
   height: 2.6rem;
   padding: 1rem;
   outline: none;
@@ -29,4 +29,13 @@
 .input_textarea::placeholder {
   font-size: 0.9rem;
   font-weight: 300;
+}
+
+@media (max-width: 768px) {
+  .main_input {
+    width: 100%;
+  }
+  .input_textarea {
+    width: 100%;
+  }
 }
