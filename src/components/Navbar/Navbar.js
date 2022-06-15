@@ -12,7 +12,7 @@ import AddMovie from "../AddMovie/AddMovie";
 const Navbar = ({ role }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { logOut } = useUserAuth();
+  const { logOut, user } = useUserAuth();
   const navigate = useNavigate();
   const navRef = useRef();
 
@@ -89,7 +89,7 @@ const Navbar = ({ role }) => {
               <div className="dropdown_container" ref={navRef}>
                 <div className="dropdown_inner_container">
                   <Button
-                    content="Logout"
+                    content={user.isAnonymous ? "Login" : "Logout"}
                     onClick={handleLogout}
                     width="4rem"
                     height="2rem"

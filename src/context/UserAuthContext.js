@@ -51,7 +51,7 @@ export function UserAuthContextProvider({ children }) {
 
   function logOut() {
     return signOut(auth).then(() => {
-      setUser({});
+      setUser("");
       setRole("");
     });
   }

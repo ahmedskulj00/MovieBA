@@ -73,9 +73,11 @@ const Auth = () => {
 
   useEffect(() => {
     if (user) {
-      logOut();
+      if (Object.keys(user).length > 0) {
+        navigate("/home");
+      }
     }
-  }, [user]);
+  }, [user, navigate]);
 
   return (
     <div className="main_auth_container">

@@ -5,6 +5,7 @@ import MovieModal from "../MovieModal/MovieModal";
 import CustomModal from "../Modal/CustomModal";
 import Button from "../Button/Button";
 import { deleteMovie } from "../../lib/Functions/movie_functions";
+import DeleteMovie from "../DeleteMovie/DeleteMovie";
 const MovieCard = ({
   movieImage,
   movieName,
@@ -17,9 +18,19 @@ const MovieCard = ({
   user,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const openModal = () => {
     setIsModalOpen(true);
+  };
+
+  const openDeleteModal = () => {
+    setIsDeleteModalOpen(true);
+  };
+
+  const closeDelete = (e) => {
+    e.stopPropagation();
+    setIsDeleteModalOpen(false);
   };
 
   const closeModal = (e) => {
@@ -28,9 +39,9 @@ const MovieCard = ({
   };
 
   return (
-    <div className="movie_card_container" onClick={openModal}>
+    <div className="movie_card_container">
       <div className="movie_card_inner_container">
-        <div className="movie_card_image_container">
+        <div className="movie_card_image_container" onClick={openModal}>
           <img
             src={movieImage}
             alt="movie_card_image"
@@ -50,13 +61,27 @@ const MovieCard = ({
             <p>{movieRating === "NaN" ? "0.0" : movieRating}</p>
           </div>
           {role === "admin" && !user.isAnonymous ? (
-            <div className="movie_card_rating_container">
+            <div className="movie_card_delete_container">
               <Button
                 onClick={() => {
-                  deleteMovie(movieName);
+                  openDeleteModal();
                 }}
                 deleteButton={true}
               ></Button>
+              {isDeleteModalOpen && (
+                <CustomModal
+                  modalIsOpen={isDeleteModalOpen}
+                  closeModal={closeDelete}
+                  width="30rem"
+                  height="20rem"
+                >
+                  <DeleteMovie
+                    closeModal={closeDelete}
+                    deleteFunction={deleteMovie}
+                    movieName={movieName}
+                  />
+                </CustomModal>
+              )}
             </div>
           ) : null}
         </div>

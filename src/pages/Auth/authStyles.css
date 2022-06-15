@@ -4,6 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: fade-in-right 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 
 .inner_auth_container {
@@ -68,6 +69,13 @@
   cursor: pointer;
   font-size: 1rem;
   margin-top: 1rem;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 2px;
+  transition: border 0.2s ease-in-out;
+}
+
+.button_link:hover {
+  border-bottom: 2px solid #0984e3;
 }
 
 .auth_question {
@@ -109,5 +117,16 @@
   }
   .right_auth_container input {
     width: 15rem;
+  }
+}
+
+@keyframes fade-in-right {
+  0% {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
   }
 }
