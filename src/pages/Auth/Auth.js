@@ -16,7 +16,7 @@ const Auth = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const { logIn, signUp, guestLogin, user } = useUserAuth();
+  const { logIn, signUp, guestLogin, user, logOut } = useUserAuth();
   const navigate = useNavigate();
 
   console.log(error);
@@ -70,6 +70,12 @@ const Auth = () => {
       setError("");
     }
   }, [email, password, isLogin, authChanged]);
+
+  useEffect(() => {
+    if (user) {
+      logOut();
+    }
+  }, [user]);
 
   return (
     <div className="main_auth_container">
