@@ -20,9 +20,9 @@ const Home = () => {
   }, [getUserRole]);
 
   return (
-    <div>
+    <div className="home_container">
       <Navbar role={role} />
-      <div className="home_container">
+      <div className="home_inner_container">
         <div className="home_grid_container">
           {moviesNew.map((movie, index) => (
             <MovieCard

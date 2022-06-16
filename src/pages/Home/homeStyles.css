@@ -1,4 +1,18 @@
+.home_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.home_inner_container {
+  width: 100%;
+}
+
 .home_grid_container {
+  width: 100%;
   margin-top: 5rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
@@ -7,7 +21,7 @@
 }
 
 @media (max-width: 768px) {
-  .home_container {
+  .home_inner_container {
     overflow-x: hidden;
     width: 100%;
     height: 100%;

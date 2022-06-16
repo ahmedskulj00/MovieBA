@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./movieCardStyles.css";
 import Star from "../../assets/images/star.png";
+import Calendar from "../../assets/images/calendar.png";
+import Genre from "../../assets/images/movie.png";
 import MovieModal from "../MovieModal/MovieModal";
 import CustomModal from "../Modal/CustomModal";
 import Button from "../Button/Button";
@@ -52,8 +54,14 @@ const MovieCard = ({
           <h2 className="movie_card_name">{movieName}</h2>
         </div>
         <div className="movie_card_info_container">
-          <p className="movie_card_year">{movieYear}</p>
-          <p className="movie_card_genre">{movieGenre}</p>
+          <div className="movie_card_year_container">
+            <img src={Calendar} alt="calendar_icon" className="calendar_icon" />
+            <p className="movie_card_year">{movieYear}</p>
+          </div>
+          <div className="movie_card_genre_container">
+            <img src={Genre} alt="genre_icon" className="genre_icon" />
+            <p className="movie_card_genre">{movieGenre}</p>
+          </div>
         </div>
         <div className="movie_card_rating_delete_container">
           <div className="movie_card_rating_container">

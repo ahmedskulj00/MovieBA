@@ -3,6 +3,8 @@ import Button from "../Button/Button";
 import "./navbarStyles.css";
 import Plus from "../../assets/images/add.png";
 import UserIcon from "../../assets/images/user.png";
+import LogoutIcon from "../../assets/images/exit.png";
+import LoginIcon from "../../assets/images/key.png";
 import Popcorn from "../../assets/images/popcorn.png";
 import { useUserAuth } from "../../context/UserAuthContext";
 import { useNavigate } from "react-router-dom";
@@ -49,8 +51,9 @@ const Navbar = ({ role }) => {
     <div className="main_navbar_container">
       <div className="inner_navbar_container">
         <div className="navbar_logo_container">
-          <img src={Popcorn} alt="popcorn" className="popcorn_icon" />
-          <h1>MovieBA</h1>
+          <div className="navbar_logo">
+            <h1>movieba</h1>
+          </div>
         </div>
         <div
           className={
@@ -88,13 +91,27 @@ const Navbar = ({ role }) => {
             {isOpen && (
               <div className="dropdown_container" ref={navRef}>
                 <div className="dropdown_inner_container">
-                  <Button
+                  <p>Choose your option:</p>
+                  {/* <Button
                     content={user.isAnonymous ? "Login" : "Logout"}
-                    onClick={handleLogout}
+                   
                     width="4rem"
                     height="2rem"
                     fontSize="0.9rem"
-                  />
+                  /> */}
+                  <div
+                    className="dropdown_button_container"
+                    onClick={handleLogout}
+                  >
+                    <img
+                      src={user.isAnonymous ? LoginIcon : LogoutIcon}
+                      alt="dropdown_icon"
+                      className="dropdown_icon"
+                    />
+                    <button className="dropdown_button">
+                      {user.isAnonymous ? "Login" : "Logout"}
+                    </button>
+                  </div>
                 </div>
               </div>
             )}
