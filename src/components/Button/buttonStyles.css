@@ -42,3 +42,32 @@
   width: 22px;
   height: 22px;
 }
+
+.dropdown_icon {
+  height: 22px;
+  width: 22px;
+  margin-left: 1rem;
+}
+
+.dropdown_button_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e3ebf5;
+  height: 3rem;
+  width: 20rem;
+  border-radius: 3%;
+  cursor: pointer;
+}
+
+.dropdown_button {
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  width: 90%;
+  height: 3rem;
+  pointer-events: none;
+  margin-right: 2rem;
+}

@@ -3,8 +3,7 @@ import Button from "../Button/Button";
 import "./navbarStyles.css";
 import Plus from "../../assets/images/add.png";
 import UserIcon from "../../assets/images/user.png";
-import LogoutIcon from "../../assets/images/exit.png";
-import LoginIcon from "../../assets/images/key.png";
+
 import Popcorn from "../../assets/images/popcorn.png";
 import { useUserAuth } from "../../context/UserAuthContext";
 import { useNavigate } from "react-router-dom";
@@ -92,26 +91,11 @@ const Navbar = ({ role }) => {
               <div className="dropdown_container" ref={navRef}>
                 <div className="dropdown_inner_container">
                   <p>Choose your option:</p>
-                  {/* <Button
+                  <Button
                     content={user.isAnonymous ? "Login" : "Logout"}
-                   
-                    width="4rem"
-                    height="2rem"
-                    fontSize="0.9rem"
-                  /> */}
-                  <div
-                    className="dropdown_button_container"
                     onClick={handleLogout}
-                  >
-                    <img
-                      src={user.isAnonymous ? LoginIcon : LogoutIcon}
-                      alt="dropdown_icon"
-                      className="dropdown_icon"
-                    />
-                    <button className="dropdown_button">
-                      {user.isAnonymous ? "Login" : "Logout"}
-                    </button>
-                  </div>
+                    dropdownButton={true}
+                  />
                 </div>
               </div>
             )}

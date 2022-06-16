@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import "./buttonStyles.css";
 import TrashCan from "../../assets/images/trash.png";
 import TrashCanInvert from "../../assets/images/trash_invert.png";
+import LogoutIcon from "../../assets/images/exit.png";
+import LoginIcon from "../../assets/images/key.png";
+import { useUserAuth } from "../../context/UserAuthContext";
 const Button = ({
   content,
   onClick,
@@ -9,10 +12,12 @@ const Button = ({
   height,
   fontSize,
   deleteButton,
+  dropdownButton,
 }) => {
   const [isHover, setIsHover] = useState(false);
+  const { user } = useUserAuth();
   return (
-    <div>
+    <>
       {deleteButton ? (
         <button
           className="delete_button"
@@ -27,6 +32,15 @@ const Button = ({
             <img src={TrashCan} alt="trash_can" className="trash_icon" />
           )}
         </button>
+      ) : dropdownButton ? (
+        <div className="dropdown_button_container" onClick={onClick}>
+          <img
+            src={user.isAnonymous ? LoginIcon : LogoutIcon}
+            alt="dropdown_icon"
+            className="dropdown_icon"
+          />
+          <button className="dropdown_button">{content}</button>
+        </div>
       ) : (
         <button
           onClick={onClick}
@@ -36,7 +50,7 @@ const Button = ({
           {content}
         </button>
       )}
-    </div>
+    </>
   );
 };
 

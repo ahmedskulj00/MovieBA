@@ -36,10 +36,31 @@
   margin-bottom: 0.5rem;
 }
 
+.movie_modal_year_container {
+  display: flex;
+  align-items: center;
+}
+
+.movie_modal_year_container img {
+  width: 18px;
+  height: 18px;
+}
+
 .movie_modal_year {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   font-weight: 400;
-  margin-bottom: 0.5rem;
+}
+
+.movie_modal_genre_container {
+  display: flex;
+  font-size: 1.1rem;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.movie_modal_genre_container img {
+  width: 18px;
+  height: 18px;
 }
 
 .movie_modal_genre_rating_container {
@@ -47,6 +68,20 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
+}
+
+.movie_modal_rating_container {
+  display: flex;
+  align-items: center;
+}
+
+.movie_modal_rating_container p {
+  font-size: 1.1rem;
+}
+
+.movie_modal_rating_container img {
+  width: 18px;
+  height: 18px;
 }
 
 .movie_description_container {

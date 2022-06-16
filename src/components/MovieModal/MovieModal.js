@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./movieModalStyles.css";
 import Star from "../../assets/images/star.png";
+import Calendar from "../../assets/images/calendar.png";
+import Genre from "../../assets/images/movie.png";
 import Button from "../Button/Button";
 import { useUserAuth } from "../../context/UserAuthContext";
 import { deleteRating, rateMovie } from "../../lib/Functions/movie_functions";
@@ -54,13 +56,21 @@ const MovieModal = ({
         <div className="movie_modal_info">
           <div className="movie_modal_name_year_container">
             <h2 className="movie_modal_name">{movieName}</h2>
-            <h2 className="movie_modal_year">{movieYear}</h2>
+            <div className="movie_modal_year_container">
+              <img
+                src={Calendar}
+                alt="calendar_icon"
+                className="calendar_icon"
+              />
+              <h2 className="movie_modal_year">{movieYear}</h2>
+            </div>
           </div>
           <div className="movie_modal_genre_rating_container">
             <div className="movie_modal_genre_container">
+              <img src={Genre} alt="genre_icon" className="genre_icon" />
               <p>{movieGenre}</p>
             </div>
-            <div className="movie_card_rating_container">
+            <div className="movie_modal_rating_container">
               <img src={Star} alt="star_icon" className="rating_icon" />
               <p>{movieRating === "NaN" ? "0.0" : movieRating}</p>
             </div>
