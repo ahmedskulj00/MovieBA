@@ -21,7 +21,10 @@ const DeleteMovie = ({ deleteFunction, movieName, closeModal }) => {
         <div className="delete_movie_buttons_container">
           <Button
             content="Yes"
-            onClick={() => deleteFunction(movieName)}
+            onClick={() => {
+              deleteFunction(movieName);
+              closeModal();
+            }}
             width="8rem"
             height="2rem"
           ></Button>
