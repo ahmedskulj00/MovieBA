@@ -5,9 +5,6 @@ import {
   onAuthStateChanged,
   signOut,
   signInAnonymously,
-  setPersistence,
-  browserLocalPersistence,
-  browserSessionPersistence,
 } from "firebase/auth";
 import { auth } from "../lib/Firebase/firebase_cfg";
 import { collection, setDoc, doc, getDoc } from "@firebase/firestore";

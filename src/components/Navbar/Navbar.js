@@ -4,7 +4,6 @@ import "./navbarStyles.css";
 import Plus from "../../assets/images/add.png";
 import UserIcon from "../../assets/images/user.png";
 
-import Popcorn from "../../assets/images/popcorn.png";
 import { useUserAuth } from "../../context/UserAuthContext";
 import { useNavigate } from "react-router-dom";
 import CustomModal from "../Modal/CustomModal";

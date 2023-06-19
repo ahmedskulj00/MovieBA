@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Input from "../../components/Input/Input";
 import "./authStyles.css";
-import Button from "../../components/Button/Button";
 import { useUserAuth } from "../../context/UserAuthContext";
 import { useNavigate } from "react-router-dom";
 import AuthImage from "../../assets/images/authimage.jpg";
@@ -16,7 +14,7 @@ const Auth = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const { logIn, signUp, guestLogin, user, logOut } = useUserAuth();
+  const { logIn, signUp, guestLogin, user } = useUserAuth();
   const navigate = useNavigate();
 
   console.log(error);
